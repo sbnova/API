@@ -36,7 +36,7 @@ public class ConnectServer {
 
         OkHttpClient client = new OkHttpClient();
 
-//        POST 메소드느 FormBody에 필요 데이터를 첨부.
+//        POST 메소드는 FormBody에 필요 데이터를 첨부.
         RequestBody requestBody = new FormBody.Builder().add("user_id", user_id).add("password", password).build();
 
 //        요청 자체로 생성, Request
@@ -47,7 +47,7 @@ public class ConnectServer {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("서버 연결 실패", e.toString());
+                Log.e("서버연결실패", e.toString());
             }
 
             @Override
