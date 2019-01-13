@@ -1,9 +1,18 @@
 package com.cyj.api;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
+
+import com.cyj.api.utils.GlobalData;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity {
+
+    private android.widget.TextView welcomMsgTxt;
+    private de.hdodenhof.circleimageview.CircleImageView userProfileImgView;
+    private android.widget.TextView userEmailTxt;
+    private android.widget.TextView userPhoneTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +31,19 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+//        GlobalData의 loginUser의 이름 가져오기
+        String welcomeMessage = String.format("%s님 환영합니다.", GlobalData.loginUser.getName());
+        welcomMsgTxt.setText(welcomeMessage);
+
 
     }
 
     @Override
     public void bindViews() {
+        this.userPhoneTxt = (TextView) findViewById(R.id.userPhoneTxt);
+        this.userEmailTxt = (TextView) findViewById(R.id.userEmailTxt);
+        this.userProfileImgView = (CircleImageView) findViewById(R.id.userProfileImgView);
+        this.welcomMsgTxt = (TextView) findViewById(R.id.welcomMsgTxt);
 
     }
 }

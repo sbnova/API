@@ -17,7 +17,7 @@ public class ContextUtil {
         pref.edit().putString(TOKEN, serverToken).apply();
     }
 
-    public static String getTOKEN(Context context){
+    public static String getToken(Context context){
         SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
        return pref.getString(TOKEN, "");

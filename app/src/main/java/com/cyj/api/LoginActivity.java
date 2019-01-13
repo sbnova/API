@@ -1,5 +1,6 @@
 package com.cyj.api;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.cyj.api.datas.User;
 import com.cyj.api.utils.ConnectServer;
 import com.cyj.api.utils.ContextUtil;
+import com.cyj.api.utils.GlobalData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,15 +62,26 @@ public class LoginActivity extends BaseActivity {
                                         JSONObject userJson = data.getJSONObject("user");
 
                                         User user = User.getUserFromJson(userJson);
+//                                        현재 login user 값을 GlobalData에 저장
+                                        GlobalData.loginUser = user;
 
                                         Log.d("로그인응답", "로그인한사람이름 : " + user.getName());
 
                                         String token = data.getString("token");
+//                                        지금 가지고 있는 token 값을 GlobalData에 저장
+                                        GlobalData.token = token;
 
                                         if(autoLoginCheckBox.isChecked()){
 //                                            자동로그인을 하고싶다 => SharedPreferences을 이용해서 토큰을 (반영구) 저장
                                             ContextUtil.setToken(mContext, token);
                                         }
+
+//                                        intent로 정보를 화면을 옮기며 정보를 가져오는게 아니라 GlobalData의 내용을 가져올예정
+                                        Intent intent = new Intent(mContext, MainActivity.class);
+                                        startActivity(intent);
+//                                        로그인에 성공하면 로그인화면은 종료.
+                                        finish();
+
                                     } else {
                                         runOnUiThread(new Runnable() {
                                             @Override
