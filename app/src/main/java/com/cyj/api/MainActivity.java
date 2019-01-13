@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.cyj.api.utils.ContextUtil;
 import com.cyj.api.utils.GlobalData;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -45,6 +46,9 @@ public class MainActivity extends BaseActivity {
                 logoutAlert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+//                        저장된 토큰을 빈카으로 바꿔서 로그아웃 되었음ㅇ르 처리.
+                        ContextUtil.setToken(mContext, "");
 
                         Intent intent = new Intent(mContext, LoginActivity.class);
                         startActivity(intent);
